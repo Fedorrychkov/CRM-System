@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+import AuthService from './services/authService';
 
 import logo from './assets/img/logo.svg';
 import './App.scss';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {person: []};
@@ -16,14 +16,14 @@ class App extends Component {
   }
 
   Value() {
-    axios.get('http://localhost:57024/api/v1/crmsys/values')
-    .then((data) => {
-      this.setState({ person: data });
-      console.log(data);
-    });
-    // return "hello";
     
-  
+    AuthService.getValue(this.params)
+    .then(
+      (data) => {
+        console.log(data);
+      }
+    )
+
   }
 
   render() {
